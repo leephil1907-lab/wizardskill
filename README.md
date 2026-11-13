@@ -1,58 +1,93 @@
 # WizardSkill
 
-**An AI-assisted design and frontend engineering skill system.**
+**An AI-assisted design and frontend engineering system — with an installable coding skill and a practical web studio.**
 
-WizardSkill turns a design brief into a researched, structured, implementation-ready website or product interface. It combines a curated design-resource directory, repeatable workflows, reusable prompts, quality gates, and practical frontend guidance.
+WizardSkill helps builders move from a product idea to a researched, structured, implementation-ready experience. It combines an agent skill, curated design resources, reusable prompt workflows, a project brief, and a quality gate.
 
-It is designed for AI coding agents and solo builders. It does not scrape, copy, or redistribute third-party assets. It points agents to original sources and tells them how to use those sources responsibly.
+## Two ways to use WizardSkill
 
-## What is included
+### 1. WizardSkill Studio
 
-- **Core agent skill** — [`.agents/skills/wizardskill/SKILL.md`](.agents/skills/wizardskill/SKILL.md)
-- **Resource directory** — [`docs/resource-catalog.md`](docs/resource-catalog.md)
-- **Design-to-build workflow** — [`docs/workflows.md`](docs/workflows.md)
-- **Prompt library** — [`prompts/`](prompts/)
-- **Project brief template** — [`templates/design-brief.md`](templates/design-brief.md)
-- **Quality checklist** — [`templates/quality-gate.md`](templates/quality-gate.md)
-- **Resource link checker** — [`scripts/check-links.mjs`](scripts/check-links.mjs)
+A responsive browser workspace for the everyday design-to-build workflow.
 
-## Quick start
+- **Overview** — quick access to the core workflow.
+- **Resource library** — search and filter 19 curated design and build references.
+- **Prompt studio** — create and copy contextual prompts for website builds, landing pages, feature extensions, and motion systems.
+- **Project brief** — write, autosave locally, and copy a structured project brief.
+- **Quality gate** — track manual pre-ship checks, with progress saved in the current browser.
 
-1. Open the target project repository in your AI coding agent.
-2. Add or install the WizardSkill folder using the instructions below.
-3. Give the agent the project's goal, audience, existing stack, and constraints.
-4. Ask it to **plan, research, implement, and verify** the requested design or feature.
-5. Require it to preserve existing design systems and working behavior unless a redesign is explicitly requested.
+The Studio is a client-side workspace. Briefs and checklist state stay in the browser's local storage; no account, hosted database, or server-side project storage is included. Prompt generation is local and does not transmit project data.
 
-### Install with the skills CLI
+### 2. Installable agent skill
 
-From the target project:
+The core skill lives at [`.agents/skills/wizardskill/SKILL.md`](.agents/skills/wizardskill/SKILL.md).
+
+Install it from a target project:
 
 ```bash
 npx skills add leephil1907-lab/wizardskill
 ```
 
-If your agent does not support the skills CLI, copy `.agents/skills/wizardskill/` into the equivalent skills directory it supports and point the agent to `SKILL.md`.
+Or copy `.agents/skills/wizardskill/` into the skills directory supported by your coding agent and point it to `SKILL.md`.
 
-## Core workflow
+## Run the Studio locally
 
-1. **Inspect** — understand the existing repository before changing it.
+Requirements: Node.js 20 or newer and npm.
+
+```bash
+npm install
+npm run dev
+```
+
+Production build and local verification:
+
+```bash
+npm run check
+npm run build
+npm run preview
+```
+
+The production output is written to `dist/`. It can be hosted on any static hosting provider that supports SPA fallback to `index.html`.
+
+## Design-to-build workflow
+
+1. **Inspect** — understand the existing repository, stack, routes, design system, assets, and integrations.
 2. **Define** — establish audience, user journey, brand, content, constraints, and success criteria.
-3. **Research** — select relevant references from the resource catalog; inspect real examples rather than copying layouts.
-4. **Direct** — define the visual system, responsive behavior, components, and interaction states.
+3. **Research** — select a small number of relevant references; study principles rather than copying layouts.
+4. **Direct** — define visual system, responsive behavior, components, and interaction states.
 5. **Build** — implement in the existing stack and conventions with minimal, deliberate changes.
 6. **Verify** — run available checks and inspect desktop, tablet, and mobile behavior.
 7. **Report** — summarize changed files, tests, remaining gaps, and deployment requirements.
 
-## Design resource collection
+## Repository map
 
-The curated directory includes tools and references for AI site generation, landing pages, social creatives, motion, icons, typography, inspiration, backgrounds, components, Figma work, real app screens, messaging, logos, and animation.
-
-See [the complete catalog](docs/resource-catalog.md). Links are references, not endorsements; availability, pricing, licensing, and product capabilities can change.
+```text
+.agents/skills/wizardskill/SKILL.md
+docs/
+  resource-catalog.md
+  workflows.md
+  external-content-safety.md
+prompts/
+  website-build.md
+  landing-page.md
+  motion-and-interaction.md
+  social-creative.md
+templates/
+  design-brief.md
+  quality-gate.md
+scripts/check-links.mjs
+src/
+  App.tsx
+  data.ts
+  main.tsx
+  styles.css
+index.html
+vite.config.ts
+```
 
 ## Project principles
 
-- Preserve the existing website's identity and structure when the task is an extension, not a redesign.
+- Preserve an existing website's identity and working behavior when extending it.
 - Prefer real product imagery, meaningful icons, and credible content over placeholders.
 - Design responsive layouts and complete interaction states, not just screenshots.
 - Use accessible contrast, keyboard navigation, semantic markup, and reduced-motion support.
@@ -67,25 +102,7 @@ See [the complete catalog](docs/resource-catalog.md). Links are references, not 
 node scripts/check-links.mjs
 ```
 
-The checker reports reachable/unreachable URLs and does not modify files. Network access is required.
-
-## Repository structure
-
-```text
-.agents/skills/wizardskill/SKILL.md
-docs/resource-catalog.md
-docs/workflows.md
-prompts/
-  website-build.md
-  landing-page.md
-  motion-and-interaction.md
-  social-creative.md
-templates/
-  design-brief.md
-  quality-gate.md
-scripts/check-links.mjs
-README.md
-```
+The checker reports reachable/unreachable URLs and does not modify files. Network access is required. Availability, pricing, licensing, and provider capabilities can change; verify them with the source before use.
 
 ## License
 
